@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useApp } from '../AppContext.jsx';
 
 const HIGHLIGHTS = [
@@ -150,12 +149,6 @@ export default function Signin() {
           <p className="text-center text-xs text-mute mt-8">
             🔒 End-to-end encrypted · sessions expire after 30 minutes of inactivity
           </p>
-          <div className="mt-6 text-center text-[11px] text-mute">
-            By signing in you agree to our{' '}
-            <Link to="/terms" className="text-teal-600 hover:underline">Terms</Link>{' '}
-            and{' '}
-            <Link to="/privacy" className="text-teal-600 hover:underline">Privacy Policy</Link>.
-          </div>
         </div>
       </section>
     </div>

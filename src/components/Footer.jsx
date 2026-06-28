@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 // Lightweight footer used on the signin page + below the customer dashboard.
 // Brand line on the left, legal links on the right, year auto-updates.
 export default function Footer() {
@@ -11,20 +9,8 @@ export default function Footer() {
           © {year} <strong>NIXXY</strong> · AI Voice Agents
         </div>
         <nav className="flex items-center gap-5">
-          <Link
-            to="/terms"
-            className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white hover:underline"
-          >
-            Terms &amp; Conditions
-          </Link>
-          <Link
-            to="/privacy"
-            className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white hover:underline"
-          >
-            Privacy Policy
-          </Link>
           <a
-            href="mailto:support@acepeak.com"
+            href="mailto:support@nixxy.com"
             className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white hover:underline"
           >
             Support

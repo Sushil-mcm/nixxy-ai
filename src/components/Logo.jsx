@@ -1,55 +1,33 @@
-// Brand mark — typographic NIXXY wordmark. Clean, corporate look inspired by
-// nixxy.com: a teal-gradient rounded glyph + the NIXXY wordmark, with an
-// optional tagline beneath. Pure CSS/text so it needs no bitmap asset.
+// Brand mark — the NIXXY wordmark image (/nixxy-ai.png).
 //
-// Props are kept identical to the previous logo so existing call-sites work:
-//   size         — 'sm' | 'md' | 'lg' or a literal pixel height (e.g. 50)
-//   white        — render the wordmark in white (for dark/colored panels)
-//   showWordmark — show the small tagline under the wordmark
+// The source art is a light/white wordmark intended for dark backgrounds, so
+// on the app's light surfaces we render it as a crisp dark silhouette. Pass
+// `white` on a dark/colored panel to show it in its original light form.
+//
+// Props kept identical to the previous logo so existing call-sites still work.
+// `size` accepts 'sm' | 'md' | 'lg' or a literal pixel height; the image is
+// width-capped to its container so it never overflows narrow areas (sidebar).
 export default function Logo({ size = 'md', white = false, showWordmark = true }) {
   const h = typeof size === 'number'
     ? size
-    : size === 'lg' ? 56 : size === 'sm' ? 30 : 42;
-  const wordPx = Math.round(h * 0.52);
-  const sub = size === 'lg' ? 'text-[11px]' : size === 'sm' ? 'text-[8px]' : 'text-[10px]';
+    : size === 'lg' ? 52 : size === 'sm' ? 30 : 40;
 
   return (
-    <div className="flex items-center gap-2.5 select-none" style={{ height: h }}>
-      {/* Glyph: teal-gradient rounded square with the N monogram. */}
-      <span
-        className="inline-flex items-center justify-center rounded-xl font-extrabold shrink-0"
+    <div className="flex items-center select-none max-w-full" style={{ height: h }}>
+      <img
+        src="/nixxy-ai.png"
+        alt="NIXXY"
+        draggable={false}
         style={{
-          height: h,
-          width: h,
-          fontSize: Math.round(h * 0.5),
-          lineHeight: 1,
-          color: '#ffffff',
-          background: 'linear-gradient(135deg, var(--grad-start), var(--grad-end))',
-          boxShadow: '0 10px 24px -12px rgba(13,148,136,0.65)',
+          height: 'auto',
+          width: 'auto',
+          maxHeight: h,
+          maxWidth: '100%',
+          objectFit: 'contain',
+          // Light surfaces: turn the white art into a legible dark mark.
+          filter: white ? 'none' : 'brightness(0)',
         }}
-      >
-        N
-      </span>
-
-      <div className="leading-none">
-        <div
-          className="font-extrabold tracking-tight"
-          style={{
-            fontSize: wordPx,
-            letterSpacing: '0.02em',
-            color: white ? '#ffffff' : 'var(--ink)',
-          }}
-        >
-          NIXXY
-        </div>
-        {showWordmark && (
-          <div
-            className={`mt-1 uppercase tracking-[0.22em] font-semibold ${sub} ${white ? 'text-white/80' : 'text-mute'}`}
-          >
-            AI Voice Agents
-          </div>
-        )}
-      </div>
+      />
     </div>
   );
 }

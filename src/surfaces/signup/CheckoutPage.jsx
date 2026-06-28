@@ -113,7 +113,7 @@ export default function CheckoutPage() {
             )}
 
             <p className="text-[11px] text-mute text-center pt-3">
-              Secure checkout powered by Stripe · PCI-DSS compliant
+              Secure checkout · PCI-DSS compliant
             </p>
           </div>
         </div>
