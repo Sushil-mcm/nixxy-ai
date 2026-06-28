@@ -1,0 +1,18 @@
+node_modules
+dist
+
+# Secrets — never commit. Use .env.example as the template.
+.env
+.env.local
+.env.*.local
+
+.DS_Store
+*.log
+nohup.out
+myenv/
+__pycache__/
+logs/
+log/
+
+# Runtime caches
+server/tts-cache/
