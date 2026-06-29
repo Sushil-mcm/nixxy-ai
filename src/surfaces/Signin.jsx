@@ -1,12 +1,6 @@
 import { useState } from 'react';
 import { useApp } from '../AppContext.jsx';
 
-const HIGHLIGHTS = [
-  { title: 'Live in 30 seconds', desc: 'Pick a number, drop your knowledge base, take calls.' },
-  { title: 'Per-second billing', desc: 'No contracts, no minute round-ups. Pay only for the seconds you use.' },
-  { title: 'Real-time insight',  desc: 'Transcripts, sentiment, spend — all from your dashboard.' },
-];
-
 export default function Signin() {
   const { signinUser, authError, setAuthError } = useApp();
   const [identifier, setIdentifier] = useState('');
@@ -26,44 +20,9 @@ export default function Signin() {
   };
 
   return (
-    <div className="auth-shell animate-fade-up">
-      {/* === LEFT: BRAND PANEL ============================================ */}
-      <aside className="auth-brand hidden lg:flex">
-        <div className="relative z-10 max-w-md">
-          <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] font-semibold bg-black text-white px-3 py-1.5 rounded-full">
-            <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse"></span>
-            One platform · AI-native
-          </span>
-          <h2 className="mt-6 text-4xl xl:text-5xl font-display tracking-tight leading-[1.05]">
-            The phone system that{' '}
-            <span className="italic text-teal-600">answers itself.</span>
-          </h2>
-          <p className="mt-5 text-base text-slate-700 leading-relaxed">
-            Sign in to manage your number, agent personality, knowledge base, and live call insights.
-          </p>
-
-          <ul className="mt-8 space-y-4">
-            {HIGHLIGHTS.map((h) => (
-              <li key={h.title} className="flex gap-3">
-                <span className="mt-0.5 inline-flex w-6 h-6 items-center justify-center rounded-full bg-teal-600 text-white font-bold">
-                  ✓
-                </span>
-                <div>
-                  <div className="font-semibold text-slate-900">{h.title}</div>
-                  <div className="text-sm text-slate-700">{h.desc}</div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="relative z-10 text-xs text-mute">
-          © {new Date().getFullYear()} NIXXY · Encrypted · 30-day sessions
-        </div>
-      </aside>
-
-      {/* === RIGHT: FORM ================================================= */}
-      <section className="auth-form-panel">
+    <div className="auth-form-panel min-h-screen flex items-center justify-center animate-fade-up">
+      {/* === CENTERED LOGIN FORM ========================================= */}
+      <section className="w-full">
         <div className="mx-auto w-full max-w-md">
           <div className="mb-7">
             <h1 className="text-3xl md:text-4xl font-display tracking-tight text-slate-900">
