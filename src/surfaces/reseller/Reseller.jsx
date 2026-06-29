@@ -9,13 +9,15 @@ import Plans from './Plans.jsx';
 import Purchases from './Purchases.jsx';
 import SubResellers from './SubResellers.jsx';
 
-const TABS = [
+// `resellerOnly` tabs are visible only to top-level resellers. Sub-resellers
+// manage customers, not further sub-resellers, so the Sub-resellers tab is
+// hidden for them (and the backend rejects the create call as a backstop).
+const ALL_TABS = [
   { id: 'customers',     label: '👥 My customers' },
   { id: 'purchases',     label: '💳 Plan purchases' },
   { id: 'plans',         label: '⭐ My plans' },
-  { id: 'sub-resellers', label: '🤝 Sub-resellers' },
+  { id: 'sub-resellers', label: '🤝 Sub-resellers', resellerOnly: true },
 ];
-const VALID = new Set(TABS.map((t) => t.id));
 
 // =============================================================================
 // Reseller — top-level shell for reseller@portal accounts. Layout mirrors the
@@ -29,6 +31,12 @@ export default function Reseller() {
   useEffect(() => { setNavOpen(false); }, [tab]);
 
   if (!currentUser) return null;
+
+  // Only top-level resellers see the Sub-resellers tab; sub-resellers don't.
+  const isReseller = currentUser.userType === 'reseller';
+  const TABS = ALL_TABS.filter((t) => !t.resellerOnly || isReseller);
+  const VALID = new Set(TABS.map((t) => t.id));
+  // A sub-reseller hitting /reseller/sub-resellers directly is bounced home.
   if (!VALID.has(tab)) return <Navigate to="/reseller/customers" replace />;
 
   const activeLabel = TABS.find((t) => t.id === tab)?.label;

@@ -2799,6 +2799,11 @@ app.get('/api/reseller/sub-resellers', auth, requireReseller, async (req, res) =
 // and validation as superadmin's reseller-registration form, scoped to the
 // logged-in reseller's tree (reseller_id pre-set to req.user.id).
 app.post('/api/reseller/sub-resellers', auth, requireReseller, async (req, res) => {
+  // Only top-level resellers may create sub-resellers. Sub-resellers manage
+  // customers, not further sub-resellers.
+  if (req.user.user_type !== 'reseller') {
+    return res.status(403).json({ error: 'Only resellers can add sub-resellers' });
+  }
   const b = req.body || {};
   const required = ['name', 'company', 'email', 'username', 'password', 'phone', 'resellerPortal'];
   for (const k of required) {
