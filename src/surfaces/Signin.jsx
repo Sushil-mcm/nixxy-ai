@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useApp } from '../AppContext.jsx';
+import Logo from '../components/Logo.jsx';
 
 export default function Signin() {
   const { signinUser, authError, setAuthError } = useApp();
@@ -20,16 +21,19 @@ export default function Signin() {
   };
 
   return (
-    <div className="auth-form-panel min-h-screen flex items-center justify-center animate-fade-up">
-      {/* === CENTERED LOGIN FORM ========================================= */}
+    <div className="nixxy-dark auth-dark min-h-screen flex items-center justify-center px-5 animate-fade-up">
+      {/* === CENTERED LOGIN FORM (nixxy.com dark theme) ================== */}
       <section className="w-full">
         <div className="mx-auto w-full max-w-md">
+          <div className="mb-8 flex justify-center">
+            <Logo white size={38} showWordmark={false} />
+          </div>
           <div className="mb-7">
-            <h1 className="text-3xl md:text-4xl font-display tracking-tight text-slate-900">
+            <h1 className="text-3xl md:text-4xl font-display tracking-tight text-white">
               Sign in to your{' '}
-              <span className="italic text-teal-600">portal.</span>
+              <span className="italic text-teal-400">portal.</span>
             </h1>
-            <p className="text-mute mt-2 text-[15px]">
+            <p className="text-neutral-400 mt-2 text-[15px]">
               Sign in to your dashboard.
             </p>
           </div>
@@ -58,7 +62,7 @@ export default function Signin() {
                 <label className="field-label !mb-0">Password</label>
                 <a
                   href="#"
-                  className="text-xs font-medium text-teal-600 hover:text-teal-700 hover:underline"
+                  className="text-xs font-medium text-teal-400 hover:text-teal-300 hover:underline"
                   onClick={(e) => e.preventDefault()}
                 >
                   Forgot password?
@@ -76,7 +80,7 @@ export default function Signin() {
                 <button
                   type="button"
                   onClick={() => setShowPwd((v) => !v)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-medium text-mute hover:text-slate-900 px-2 py-1 rounded"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-medium text-neutral-400 hover:text-white px-2 py-1 rounded"
                 >
                   {showPwd ? 'Hide' : 'Show'}
                 </button>
@@ -97,7 +101,7 @@ export default function Signin() {
                 checked={remember}
                 onChange={(e) => setRemember(e.target.checked)}
               />
-              <span className="text-sm text-slate-700">Keep me signed in</span>
+              <span className="text-sm text-neutral-300">Keep me signed in</span>
             </label>
 
             <button type="submit" className="btn-teal w-full py-3.5 text-[15px]" disabled={busy}>
